@@ -67,8 +67,8 @@ class JacocoAndroidPlugin implements Plugin<ProjectInternal> {
     def sourceDirs = sourceDirs(variant)
     def classesDir = classesDir(variant)
     
-    boolean integrationTestsEnabled = project.jacocoAndroidUnitTestReport.integrationTestsEnabled
     Task integrationTestTask = getTask(project, getIntegrationTaskName(variant))
+    boolean integrationTestsEnabled = project.jacocoAndroidUnitTestReport.integrationTestsEnabled && null != integrationTestTask
     def testTask = testTask(project.tasks, variant)
 
     def executionData = executionDataFile(testTask, integrationTestsEnabled, project)
